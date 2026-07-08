@@ -16,8 +16,8 @@ const COLORS = {
 // the guestbook passcode if you want them separate.
 const PASSCODE = "favored50draw";
 
-export default function RaffleHost() {
-  const [unlocked, setUnlocked] = useState(false);
+export default function RaffleHost({ embedded = false }) {
+  const [unlocked, setUnlocked] = useState(embedded);
   const [input, setInput] = useState("");
   const [entries, setEntries] = useState([]);
   const [drawing, setDrawing] = useState(false);

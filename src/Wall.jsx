@@ -13,14 +13,17 @@ const COLORS = {
 
 const BG_TILTS = [-4, 3, -2, 4, -3, 2, -2.5, 3.5, -1.5, 2.5];
 
-function SpotlightCard({ entry }) {
+function SpotlightCard({ entry, visible }) {
   return (
     <div
-      className="rounded-md p-8 pb-9 shadow-2xl animate-spotlight-in"
+      className="rounded-md p-8 pb-9 shadow-2xl"
       style={{
         background: COLORS.cream,
         width: "min(640px, 80vw)",
         boxShadow: "0 30px 80px -20px rgba(0,0,0,0.6)",
+        transition: "opacity 0.7s ease, transform 0.7s ease",
+        opacity: visible ? 1 : 0,
+        transform: visible ? "scale(1) translateY(0)" : "scale(0.93) translateY(16px)",
       }}
     >
       {entry.photo_url && (
@@ -38,10 +41,7 @@ function SpotlightCard({ entry }) {
           {entry.type === "memory" ? "A memory" : "A wish"}
         </p>
       </div>
-      <p
-        className="text-3xl leading-snug mb-4"
-        style={{ color: COLORS.deepPurple, fontFamily: "'Playfair Display', serif" }}
-      >
+      <p className="text-3xl leading-snug mb-4" style={{ color: COLORS.deepPurple, fontFamily: "'Playfair Display', serif" }}>
         {entry.text}
       </p>
       <p className="text-right text-xl italic" style={{ color: COLORS.roseGold, fontFamily: "'Cormorant Garamond', serif" }}>
@@ -59,7 +59,7 @@ function BackgroundCard({ entry, tilt, position }) {
         background: COLORS.cream,
         width: 180,
         transform: `translate(${position.x}px, ${position.y}px) rotate(${tilt}deg) scale(0.9)`,
-        opacity: 0.55,
+        opacity: 0.45,
         boxShadow: "0 8px 24px -8px rgba(0,0,0,0.4)",
       }}
     >
@@ -78,17 +78,13 @@ function BackgroundCard({ entry, tilt, position }) {
   );
 }
 
-// Deterministic scattered positions around the edges, leaving the center clear
 function generatePositions(count) {
   const positions = [];
   for (let i = 0; i < count; i++) {
     const angle = (i / Math.max(count, 1)) * Math.PI * 2 + i * 0.7;
-    const radiusX = 38 + (i % 3) * 6; // percent of half-width
+    const radiusX = 38 + (i % 3) * 6;
     const radiusY = 36 + (i % 4) * 5;
-    positions.push({
-      x: Math.cos(angle) * radiusX * 10,
-      y: Math.sin(angle) * radiusY * 8,
-    });
+    positions.push({ x: Math.cos(angle) * radiusX * 10, y: Math.sin(angle) * radiusY * 8 });
   }
   return positions;
 }

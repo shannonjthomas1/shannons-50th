@@ -15,8 +15,8 @@ const COLORS = {
 // Change PASSCODE to whatever you like before deploying.
 const PASSCODE = "favored50";
 
-export default function Admin() {
-  const [unlocked, setUnlocked] = useState(false);
+export default function Admin({ embedded = false }) {
+  const [unlocked, setUnlocked] = useState(embedded);
   const [input, setInput] = useState("");
   const [entries, setEntries] = useState([]);
   const [filter, setFilter] = useState("all"); // all | public | private
