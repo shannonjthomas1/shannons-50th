@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import Hub from "./Hub.jsx";
 import Admin from "./Admin.jsx";
 import Wall from "./Wall.jsx";
 import Cards from "./Cards.jsx";
@@ -16,7 +16,7 @@ const ROUTES = {
   "/raffle": Raffle,
   "/raffle/host": RaffleHost,
 };
-const RootComponent = ROUTES[path] || App;
+const RootComponent = ROUTES[path] || Hub;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
