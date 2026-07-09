@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Crown, BookHeart, MessageCircle, Ticket, Tv, ShieldCheck, Lock } from "lucide-react";
+import { Crown, BookHeart, MessageCircle, Ticket, Tv, ShieldCheck, Lock, Heart } from "lucide-react";
 import { supabase } from "./supabaseClient";
 import App from "./App.jsx";
 import Cards from "./Cards.jsx";
+import Give from "./Give.jsx";
 import Raffle from "./Raffle.jsx";
 import Wall from "./Wall.jsx";
 import Admin from "./Admin.jsx";
@@ -95,6 +96,7 @@ const TABS = [
   { id: "cards",     label: "Table Games", icon: MessageCircle,qr: true  },
   { id: "raffle",    label: "Raffle",      icon: Ticket,       qr: true  },
   { id: "wall",      label: "Live Wall",   icon: Tv,           qr: false },
+  { id: "give",      label: "Give",        icon: Heart,        qr: false },
   { id: "host",      label: "Host",        icon: ShieldCheck,  qr: false },
 ];
 
@@ -134,6 +136,7 @@ export default function Hub() {
     cards:     <Cards />,
     raffle:    <Raffle />,
     wall:      <Wall />,
+    give:      <Give />,
   };
 
   return (
