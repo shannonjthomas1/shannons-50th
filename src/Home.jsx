@@ -11,10 +11,10 @@ const SAMPLE_ENTRIES = [
 ];
 
 function TickerBar({ entries }) {
-  const items = entries && entries.length ? entries : SAMPLE_ENTRIES;
+  const items = entries.length ? entries : SAMPLE_ENTRIES;
   const doubled = [...items, ...items];
   return (
-    <div style={{ background: "rgba(0,0,0,0.6)", borderTop: "1px solid rgba(229,193,88,0.4)", padding: "11px 0", overflow: "hidden", backdropFilter: "blur(4px)", flexShrink: 0 }}>
+    <div style={{ background: "rgba(0,0,0,0.6)", borderTop: "1px solid rgba(229,193,88,0.4)", padding: "11px 0", overflow: "hidden", backdropFilter: "blur(4px)" }}>
       <style>{`
         @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
         .ticker-tt{display:flex;animation:ticker 50s linear infinite;white-space:nowrap;width:max-content}
@@ -34,55 +34,27 @@ function TickerBar({ entries }) {
 }
 
 export default function Home({ liveEntries = [] }) {
-  const [imgLoaded, setImgLoaded] = useState(false);
-
   return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", position: "relative", overflow: "hidden", minHeight: 460 }}>
 
-      {/* Purple gradient fallback — always visible, image layers on top when ready */}
-      <div style={{
-        position: "absolute", inset: 0, zIndex: 0,
-        background: "linear-gradient(135deg, #4B1D52 0%, #7B2D6E 40%, #3D1040 100%)",
-      }} />
-
-      {/* Decorative circles on fallback */}
-      {!imgLoaded && (
-        <>
-          <div style={{ position: "absolute", top: "10%", left: "5%", width: 180, height: 180, borderRadius: "50%", background: "rgba(229,193,88,0.06)", zIndex: 1 }} />
-          <div style={{ position: "absolute", bottom: "15%", right: "8%", width: 140, height: 140, borderRadius: "50%", background: "rgba(183,110,121,0.08)", zIndex: 1 }} />
-          <div style={{ position: "absolute", top: "40%", right: "20%", width: 80, height: 80, borderRadius: "50%", background: "rgba(229,193,88,0.05)", zIndex: 1 }} />
-        </>
-      )}
-
-      {/* Banner image — loads async, fades in */}
+      {/* Full banner background */}
       <img
         src="/banner.jpg"
         alt="Favored, Fabulous & Fifty"
-        onLoad={() => setImgLoaded(true)}
         style={{
           position: "absolute", inset: 0, width: "100%", height: "100%",
-          objectFit: "cover", objectPosition: "center top", display: "block",
-          zIndex: 1,
-          opacity: imgLoaded ? 1 : 0,
-          transition: "opacity 0.6s ease",
+          objectFit: "cover", objectPosition: "center top", display: "block", zIndex: 0,
         }}
       />
 
-      {/* Gradient overlay */}
+      {/* Subtle gradient at bottom only */}
       <div style={{
-        position: "absolute", inset: 0, zIndex: 2,
+        position: "absolute", inset: 0, zIndex: 1,
         background: "linear-gradient(to bottom, rgba(0,0,0,0) 55%, rgba(20,5,28,0.55) 80%, rgba(20,5,28,0.78) 100%)",
       }} />
 
       {/* Welcome text */}
-      <div style={{ position: "relative", zIndex: 3, marginTop: "auto", padding: "0 24px 20px", textAlign: "center" }}>
-        {!imgLoaded && (
-          <div style={{ marginBottom: 20 }}>
-            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px,7vw,52px)", fontWeight: 700, color: "#FAF3EE", margin: "0 0 4px", lineHeight: 1.1 }}>Favored, Fabulous</p>
-            <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(28px,7vw,52px)", fontWeight: 700, color: "#E5C158", margin: "0 0 12px", lineHeight: 1.1 }}>&amp; Fifty</p>
-            <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: 18, fontStyle: "italic", color: "#C79AA0", margin: 0 }}>Celebrating Dr. Shannon J. Thomas</p>
-          </div>
-        )}
+      <div style={{ position: "relative", zIndex: 2, marginTop: "auto", padding: "0 24px 20px", textAlign: "center" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 12, maxWidth: 300, margin: "0 auto 10px" }}>
           <div style={{ flex: 1, height: 1, background: "linear-gradient(to right, transparent, rgba(229,193,88,0.6))" }} />
           <span style={{ color: "#E5C158", fontSize: 16 }}>✦</span>
