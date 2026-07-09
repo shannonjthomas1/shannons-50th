@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Crown, BookHeart, MessageCircle, Ticket, Tv, ShieldCheck, Lock, MapPin, Heart } from "lucide-react";
 import { supabase } from "./supabaseClient";
 import App from "./App.jsx";
 import Cards from "./Cards.jsx";
@@ -8,9 +7,7 @@ import Wall from "./Wall.jsx";
 import Admin from "./Admin.jsx";
 import RaffleHost from "./RaffleHost.jsx";
 import Home from "./Home.jsx";
-import Seating from "./Seating.jsx";
 import Give from "./Give.jsx";
-import SeatingManager from "./SeatingManager.jsx";
 
 const COLORS = {
   deepPurple: "#4B1D52", plumWine: "#6E295F", mauveBlush: "#C79AA0",
@@ -24,7 +21,6 @@ const QR_URLS = {
   guestbook: BASE_URL,
   cards: `${BASE_URL}/cards`,
   raffle: `${BASE_URL}/raffle`,
-  seating: `${BASE_URL}`,
   give: `${BASE_URL}`,
 };
 
@@ -64,7 +60,6 @@ function HostDashboard() {
   const views = [
     { id: "raffle", label: "Raffle Draw" },
     { id: "guestbook", label: "Guestbook" },
-    { id: "seating", label: "Guest List" },
   ];
   return (
     <div>
@@ -79,7 +74,6 @@ function HostDashboard() {
       </div>
       {hostView === "raffle" && <RaffleHost embedded />}
       {hostView === "guestbook" && <Admin embedded />}
-      {hostView === "seating" && <SeatingManager />}
     </div>
   );
 }
@@ -88,7 +82,6 @@ const TABS = [
   { id:"home",      label:"Home",       icon:Crown,         qr:false },
   { id:"guestbook", label:"Guestbook",  icon:BookHeart,     qr:true,  qrLabel:"sign the guestbook" },
   { id:"cards",     label:"Games",      icon:MessageCircle, qr:true,  qrLabel:"play table games" },
-  { id:"seating",   label:"My Table",   icon:MapPin,        qr:false },
   { id:"raffle",    label:"Raffle",     icon:Ticket,        qr:true,  qrLabel:"enter the raffle" },
   { id:"give",      label:"Give",       icon:Heart,         qr:false },
   { id:"wall",      label:"Live Wall",  icon:Tv,            qr:false },
@@ -118,7 +111,6 @@ export default function Hub() {
     home:      <Home liveEntries={liveEntries} />,
     guestbook: <App />,
     cards:     <Cards />,
-    seating:   <Seating />,
     raffle:    <Raffle />,
     give:      <Give />,
     wall:      <Wall />,
