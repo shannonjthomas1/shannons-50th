@@ -95,9 +95,8 @@ const TABS = [
   { id: "guestbook", label: "Guestbook",   icon: BookHeart,    qr: true  },
   { id: "cards",     label: "Table Games", icon: MessageCircle,qr: true  },
   { id: "raffle",    label: "Raffle",      icon: Ticket,       qr: true  },
-  { id: "wall",      label: "Live Wall",   icon: Tv,           qr: false },
   { id: "give",      label: "Give",        icon: Heart,        qr: false },
-  { id: "host",      label: "Host",        icon: ShieldCheck,  qr: false },
+
 ];
 
 export default function Hub() {
@@ -190,11 +189,7 @@ export default function Hub() {
 
       {/* Content */}
       <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-        {activeTab === "host" ? (
-          hostUnlocked ? <HostDashboard /> : <HostGate onUnlock={() => setHostUnlocked(true)} />
-        ) : (
-          CONTENT[activeTab]
-        )}
+        {CONTENT[activeTab]}
       </div>
     </div>
   );
