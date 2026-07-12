@@ -25,7 +25,7 @@ export default function Give() {
         Give to the Cause
       </h1>
       <p style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "clamp(15px,3.5vw,20px)", fontStyle: "italic", color: COLORS.mauveBlush, margin: "0 0 28px", textAlign: "center" }}>
-        Dr. Shannon J. Thomas Scholarship Fund
+        Willie &amp; Beverly Metts Memorial Scholarship
       </p>
 
       <div style={{ width: "100%", maxWidth: 420, background: COLORS.cream, borderRadius: 16, padding: 28, boxShadow: "0 20px 60px -10px rgba(0,0,0,0.5)" }}>
@@ -36,7 +36,7 @@ export default function Give() {
         </div>
 
         <p style={{ textAlign: "center", fontSize: 13, lineHeight: 1.7, color: COLORS.deepPurple, marginBottom: 20 }}>
-          In honor of this milestone birthday, Dr. Shannon J. Thomas invites you to invest in the next generation. Your gift helps deserving students achieve their dreams — a true reflection of what it means to be favored, fabulous, and fifty.
+          In honor of this milestone birthday, Dr. Shannon J. Thomas invites you to give to the Willie &amp; Beverly Metts Memorial Scholarship. Your gift helps deserving students achieve their dreams — a true reflection of what it means to be favored, fabulous, and fifty.
         </p>
 
         <div style={{ background: `${COLORS.deepPurple}08`, border: `1px solid ${COLORS.mauveBlush}44`, borderRadius: 10, padding: "10px 16px", textAlign: "center", marginBottom: 20 }}>
