@@ -211,14 +211,21 @@ export default function App() {
         </button>
       </div>
 
-      {/* Wall of entries */}
+      {/* Live Wall section */}
       <div className="px-5 pb-16 max-w-5xl mx-auto">
+        <div className="flex items-center gap-3 mb-6 mt-2">
+          <div style={{ flex: 1, height: 1, background: `linear-gradient(to right, transparent, ${COLORS.roseGold}66)` }} />
+          <p className="text-xs uppercase tracking-[0.2em] font-semibold" style={{ color: COLORS.champagneGold }}>
+            ✦ Live Wall ✦
+          </p>
+          <div style={{ flex: 1, height: 1, background: `linear-gradient(to left, transparent, ${COLORS.roseGold}66)` }} />
+        </div>
         {loading ? (
-          <p className="text-center mt-16" style={{ color: COLORS.mauveBlush }}>
+          <p className="text-center mt-8" style={{ color: COLORS.mauveBlush }}>
             Loading the wall...
           </p>
         ) : entries.length === 0 ? (
-          <p className="text-center mt-16" style={{ color: COLORS.champagneGold }}>
+          <p className="text-center mt-8" style={{ color: COLORS.champagneGold }}>
             Be the first to leave something here.
           </p>
         ) : (

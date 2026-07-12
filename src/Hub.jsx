@@ -96,13 +96,13 @@ const TABS = [
   { id: "cards",     label: "Table Games", icon: MessageCircle,qr: true  },
   { id: "raffle",    label: "Raffle",      icon: Ticket,       qr: true  },
   { id: "give",      label: "Give",        icon: Heart,        qr: false },
+  { id: "host",      label: "Host",        icon: ShieldCheck,  qr: false },
 
 ];
 
 export default function Hub() {
   const [activeTab, setActiveTab] = useState("home");
-  const [hostUnlocked, setHostUnlocked] = useState(false);
-  const [liveEntries, setLiveEntries] = useState([]);
+  const [hostUnlocked, setHostUnlocked] = useState(false);  const [liveEntries, setLiveEntries] = useState([]);
 
   // Fetch recent public entries for the home ticker
   useEffect(() => {
@@ -189,7 +189,9 @@ export default function Hub() {
 
       {/* Content */}
       <div style={{ flex: 1, display: "flex", flexDirection: "column" }}>
-        {CONTENT[activeTab]}
+        {activeTab === "host" ? (
+          hostUnlocked ? <HostDashboard /> : <HostGate onUnlock={() => setHostUnlocked(true)} />
+        ) : CONTENT[activeTab]}
       </div>
     </div>
   );
