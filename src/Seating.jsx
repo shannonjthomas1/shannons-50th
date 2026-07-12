@@ -3,12 +3,12 @@ import { Search, MapPin, Users, Crown } from "lucide-react";
 import { supabase } from "./supabaseClient";
 
 const COLORS = {
-  deepPurple: "#4B1D52",
-  plumWine: "#6E295F",
-  mauveBlush: "#C79AA0",
-  roseGold: "#B76E79",
-  champagneGold: "#E5C158",
-  cream: "#FAF3EE",
+  deepPurple: "#3D0C4E",
+  plumWine: "#6B2D6B",
+  mauveBlush: "#C4869A",
+  roseGold: "#C17A8A",
+  champagneGold: "#D4A84B",
+  cream: "#FDF0ED",
 };
 
 export default function Seating() {

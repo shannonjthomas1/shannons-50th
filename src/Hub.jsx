@@ -11,12 +11,12 @@ import RaffleHost from "./RaffleHost.jsx";
 import Home from "./Home.jsx";
 
 const COLORS = {
-  deepPurple: "#4B1D52",
-  plumWine: "#6E295F",
-  mauveBlush: "#C79AA0",
-  roseGold: "#B76E79",
-  champagneGold: "#E5C158",
-  cream: "#FAF3EE",
+  deepPurple: "#3D0C4E",
+  plumWine: "#6B2D6B",
+  mauveBlush: "#C4869A",
+  roseGold: "#C17A8A",
+  champagneGold: "#D4A84B",
+  cream: "#FDF0ED",
 };
 
 const BASE_URL = "https://shannons-50th-9yqe.vercel.app";
@@ -155,7 +155,7 @@ export default function Hub() {
       `}</style>
 
       {/* Tab bar */}
-      <div style={{ background: "rgba(20,5,28,0.75)", borderBottom: "1px solid rgba(229,193,88,0.2)", backdropFilter: "blur(6px)", position: "sticky", top: 0, zIndex: 30 }}>
+      <div style={{ background: "rgba(44,6,64,0.88)", borderBottom: "1px solid rgba(229,193,88,0.2)", backdropFilter: "blur(6px)", position: "sticky", top: 0, zIndex: 30 }}>
         <div className="tab-bar" style={{ maxWidth: 600, margin: "0 auto" }}>
           {TABS.map((tab) => {
             const Icon = tab.icon;

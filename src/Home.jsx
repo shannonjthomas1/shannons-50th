@@ -23,9 +23,9 @@ function TickerBar({ entries }) {
       <div className="ticker-tt">
         {doubled.map((e, i) => (
           <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "0 32px" }}>
-            <span style={{ color: "#E5C158", fontSize: 13, fontWeight: 600 }}>— {e.name || "Guest"}</span>
-            <span style={{ color: "#FAF3EE", fontSize: 13 }}>{e.text}</span>
-            <span style={{ color: "#B76E79", fontSize: 18, marginLeft: 8 }}>✦</span>
+            <span style={{ color: "#D4A84B", fontSize: 13, fontWeight: 600 }}>— {e.name || "Guest"}</span>
+            <span style={{ color: "#FDF0ED", fontSize: 13 }}>{e.text}</span>
+            <span style={{ color: "#C17A8A", fontSize: 18, marginLeft: 8 }}>✦</span>
           </span>
         ))}
       </div>
