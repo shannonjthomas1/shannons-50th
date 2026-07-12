@@ -53,26 +53,6 @@ export default function Home({ liveEntries = [] }) {
         background: "linear-gradient(to bottom, rgba(0,0,0,0) 55%, rgba(20,5,28,0.55) 80%, rgba(20,5,28,0.78) 100%)",
       }} />
 
-      {/* Welcome text */}
-      <div style={{ position: "relative", zIndex: 2, marginTop: "auto", padding: "0 24px 20px", textAlign: "center" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 12, maxWidth: 300, margin: "0 auto 10px" }}>
-          <div style={{ flex: 1, height: 1, background: "linear-gradient(to right, transparent, rgba(229,193,88,0.6))" }} />
-          <span style={{ color: "#E5C158", fontSize: 16 }}>✦</span>
-          <div style={{ flex: 1, height: 1, background: "linear-gradient(to left, transparent, rgba(229,193,88,0.6))" }} />
-        </div>
-        <p style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: "clamp(18px, 4vw, 26px)",
-          fontStyle: "italic",
-          color: "#FAF3EE",
-          margin: 0,
-          letterSpacing: "0.08em",
-          textShadow: "0 2px 12px rgba(0,0,0,0.6)",
-        }}>
-          Welcome to the celebration
-        </p>
-      </div>
-
       <TickerBar entries={liveEntries} />
     </div>
   );
