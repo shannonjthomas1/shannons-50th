@@ -172,9 +172,6 @@ export default function Seating() {
                   {entry.table}
                 </p>
               </div>
-              <div style={{ background: `${COLORS.roseGold}18`, border: `1px solid ${COLORS.roseGold}44`, borderRadius: 8, padding: "6px 12px", textAlign: "right" }}>
-                <p style={{ fontSize: 11, color: COLORS.roseGold, fontWeight: 500, margin: 0 }}>{entry.tableName}</p>
-              </div>
             </div>
 
             <div style={{ height: 1, background: `${COLORS.mauveBlush}33`, marginBottom: 12 }} />
