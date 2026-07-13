@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Crown, BookHeart, MessageCircle, Ticket, Tv, ShieldCheck, Lock, Heart, Grid3x3 } from "lucide-react";
+import { Crown, BookHeart, MessageCircle, Ticket, Tv, ShieldCheck, Lock, Heart, Grid3x3, MapPin } from "lucide-react";
 import { supabase } from "./supabaseClient";
 import App from "./App.jsx";
 import Cards from "./Cards.jsx";
 import Give from "./Give.jsx";
 import Bingo from "./Bingo.jsx";
 import BingoHost from "./BingoHost.jsx";
+import Seating from "./Seating.jsx";
 import Raffle from "./Raffle.jsx";
 import Wall from "./Wall.jsx";
 import Admin from "./Admin.jsx";
@@ -95,6 +96,7 @@ function HostDashboard() {
 
 const TABS = [
   { id: "home",      label: "Home",        icon: Crown,        qr: false },
+  { id: "seating",   label: "My Seat",     icon: MapPin,       qr: false },
   { id: "guestbook", label: "Guestbook",   icon: BookHeart,    qr: true,  qrLabel: "sign the guestbook" },
   { id: "cards",     label: "Table Games", icon: MessageCircle,qr: true,  qrLabel: "play table games" },
   { id: "bingo",     label: "Bingo",       icon: Grid3x3,      qr: true,  qrLabel: "play birthday bingo" },
@@ -135,6 +137,7 @@ export default function Hub() {
 
   const CONTENT = {
     home:      <Home liveEntries={liveEntries} />,
+    seating:   <Seating />,
     guestbook: <App />,
     cards:     <Cards />,
     bingo:     <Bingo />,
