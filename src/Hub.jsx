@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Crown, BookHeart, MessageCircle, Ticket, Tv, ShieldCheck, Lock, Heart, Grid3x3, MapPin } from "lucide-react";
+import { Crown, BookHeart, MessageCircle, Ticket, Tv, ShieldCheck, Lock, Heart } from "lucide-react";
 import { supabase } from "./supabaseClient";
 import App from "./App.jsx";
 import Cards from "./Cards.jsx";
 import Give from "./Give.jsx";
-import Bingo from "./Bingo.jsx";
-import BingoHost from "./BingoHost.jsx";
-import Seating from "./Seating.jsx";
 import Raffle from "./Raffle.jsx";
 import Wall from "./Wall.jsx";
 import Admin from "./Admin.jsx";
@@ -28,7 +25,6 @@ const HOST_PASSCODE = "favored50host";
 const QR_URLS = {
   guestbook: BASE_URL,
   cards: `${BASE_URL}/cards`,
-  bingo: `${BASE_URL}/bingo`,
   raffle: `${BASE_URL}/raffle`,
 };
 
@@ -54,7 +50,7 @@ function HostGate({ onUnlock }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "48px 24px", textAlign: "center" }}>
       <Lock size={28} style={{ color: COLORS.champagneGold, marginBottom: 12 }} />
-      <h2 style={{ fontFamily: "'Playfair Display', serif", color: COLORS.cream, fontSize: "clamp(14px,4vw,22px)", margin: "0 0 8px" }}>Host controls</h2>
+      <h2 style={{ fontFamily: "'Playfair Display', serif", color: COLORS.cream, fontSize: 22, margin: "0 0 8px" }}>Host controls</h2>
       <p style={{ color: COLORS.mauveBlush, fontSize: 13, marginBottom: 20, maxWidth: 280 }}>
         Enter the host passcode to access the raffle draw and guestbook admin.
       </p>
@@ -79,7 +75,7 @@ function HostDashboard() {
   return (
     <div>
       <div style={{ display: "flex", gap: 8, padding: "12px 16px", background: "rgba(0,0,0,0.2)" }}>
-        {[{ id: "raffle", label: "Raffle Draw" }, { id: "bingo", label: "Bingo" }, { id: "guestbook", label: "Guestbook Admin" }].map((v) => (
+        {[{ id: "raffle", label: "Raffle Draw" }, { id: "guestbook", label: "Guestbook Admin" }].map((v) => (
           <button key={v.id} onClick={() => setHostView(v.id)} style={{
             flex: 1, padding: "8px 0", borderRadius: 8, border: "none", cursor: "pointer", fontSize: 13, fontWeight: 500,
             background: hostView === v.id ? COLORS.champagneGold : "rgba(255,255,255,0.1)",
@@ -89,18 +85,16 @@ function HostDashboard() {
           </button>
         ))}
       </div>
-      {hostView === "raffle" ? <RaffleHost embedded /> : hostView === "bingo" ? <BingoHost /> : <Admin embedded />}
+      {hostView === "raffle" ? <RaffleHost embedded /> : <Admin embedded />}
     </div>
   );
 }
 
 const TABS = [
   { id: "home",      label: "Home",        icon: Crown,        qr: false },
-  { id: "seating",   label: "My Seat",     icon: MapPin,       qr: false },
-  { id: "guestbook", label: "Guestbook",   icon: BookHeart,    qr: true,  qrLabel: "sign the guestbook" },
-  { id: "cards",     label: "Table Games", icon: MessageCircle,qr: true,  qrLabel: "play table games" },
-  { id: "bingo",     label: "Bingo",       icon: Grid3x3,      qr: true,  qrLabel: "play birthday bingo" },
-  { id: "raffle",    label: "Raffle",      icon: Ticket,       qr: true,  qrLabel: "enter the raffle" },
+  { id: "guestbook", label: "Guestbook",   icon: BookHeart,    qr: true  },
+  { id: "cards",     label: "Table Games", icon: MessageCircle,qr: true  },
+  { id: "raffle",    label: "Raffle",      icon: Ticket,       qr: true  },
   { id: "give",      label: "Give",        icon: Heart,        qr: false },
   { id: "host",      label: "Host",        icon: ShieldCheck,  qr: false },
 
@@ -137,10 +131,8 @@ export default function Hub() {
 
   const CONTENT = {
     home:      <Home liveEntries={liveEntries} />,
-    seating:   <Seating />,
     guestbook: <App />,
     cards:     <Cards />,
-    bingo:     <Bingo />,
     raffle:    <Raffle />,
     wall:      <Wall />,
     give:      <Give />,
@@ -148,7 +140,7 @@ export default function Hub() {
 
   return (
     <div style={{
-      minHeight: "100vh", width: "100%", overflowX: "hidden", display: "flex", flexDirection: "column",
+      minHeight: "100vh", width: "100%", display: "flex", flexDirection: "column",
       background: `linear-gradient(165deg, ${COLORS.deepPurple} 0%, ${COLORS.plumWine} 55%, ${COLORS.deepPurple} 100%)`,
       fontFamily: "'Poppins', sans-serif",
     }}>
@@ -186,7 +178,7 @@ export default function Hub() {
           <QRCode url={QR_URLS[activeTab]} label={currentTab.label.toLowerCase()} />
           <div>
             <p style={{ color: COLORS.champagneGold, fontSize: 13, fontWeight: 500, margin: "0 0 3px" }}>
-              {`Scan to ${currentTab.qrLabel}`}
+              {activeTab === "guestbook" ? "Scan to leave a wish or memory" : activeTab === "cards" ? "Scan to play table games" : "Scan to enter the raffle"}
             </p>
             <p style={{ color: COLORS.mauveBlush, fontSize: 11, margin: 0 }}>
               Or hand your phone to a friend — anyone can scan
