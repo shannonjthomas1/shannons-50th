@@ -95,3 +95,23 @@ create policy "Anyone can update raffle entries"
   to anon
   using (true);
 
+
+-- ============================================================
+-- BINGO SYSTEM
+-- ============================================================
+create table if not exists bingo_calls (
+  id uuid primary key default gen_random_uuid(),
+  number integer not null unique check (number >= 1 and number <= 50),
+  created_at timestamptz not null default now()
+);
+
+alter table bingo_calls enable row level security;
+
+create policy "Anyone can read bingo calls"
+  on bingo_calls for select to anon using (true);
+
+create policy "Anyone can insert bingo calls"
+  on bingo_calls for insert to anon with check (true);
+
+create policy "Anyone can delete bingo calls"
+  on bingo_calls for delete to anon using (true);

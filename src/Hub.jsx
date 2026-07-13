@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Crown, BookHeart, MessageCircle, Ticket, Tv, ShieldCheck, Lock, Heart } from "lucide-react";
+import { Crown, BookHeart, MessageCircle, Ticket, Tv, ShieldCheck, Lock, Heart, Grid3x3 } from "lucide-react";
 import { supabase } from "./supabaseClient";
 import App from "./App.jsx";
 import Cards from "./Cards.jsx";
 import Give from "./Give.jsx";
+import Bingo from "./Bingo.jsx";
+import BingoHost from "./BingoHost.jsx";
 import Raffle from "./Raffle.jsx";
 import Wall from "./Wall.jsx";
 import Admin from "./Admin.jsx";
@@ -25,6 +27,7 @@ const HOST_PASSCODE = "favored50host";
 const QR_URLS = {
   guestbook: BASE_URL,
   cards: `${BASE_URL}/cards`,
+  bingo: `${BASE_URL}/bingo`,
   raffle: `${BASE_URL}/raffle`,
 };
 
@@ -75,7 +78,7 @@ function HostDashboard() {
   return (
     <div>
       <div style={{ display: "flex", gap: 8, padding: "12px 16px", background: "rgba(0,0,0,0.2)" }}>
-        {[{ id: "raffle", label: "Raffle Draw" }, { id: "guestbook", label: "Guestbook Admin" }].map((v) => (
+        {[{ id: "raffle", label: "Raffle Draw" }, { id: "bingo", label: "Bingo" }, { id: "guestbook", label: "Guestbook Admin" }].map((v) => (
           <button key={v.id} onClick={() => setHostView(v.id)} style={{
             flex: 1, padding: "8px 0", borderRadius: 8, border: "none", cursor: "pointer", fontSize: 13, fontWeight: 500,
             background: hostView === v.id ? COLORS.champagneGold : "rgba(255,255,255,0.1)",
@@ -85,16 +88,17 @@ function HostDashboard() {
           </button>
         ))}
       </div>
-      {hostView === "raffle" ? <RaffleHost embedded /> : <Admin embedded />}
+      {hostView === "raffle" ? <RaffleHost embedded /> : hostView === "bingo" ? <BingoHost /> : <Admin embedded />}
     </div>
   );
 }
 
 const TABS = [
   { id: "home",      label: "Home",        icon: Crown,        qr: false },
-  { id: "guestbook", label: "Guestbook",   icon: BookHeart,    qr: true  },
-  { id: "cards",     label: "Table Games", icon: MessageCircle,qr: true  },
-  { id: "raffle",    label: "Raffle",      icon: Ticket,       qr: true  },
+  { id: "guestbook", label: "Guestbook",   icon: BookHeart,    qr: true,  qrLabel: "sign the guestbook" },
+  { id: "cards",     label: "Table Games", icon: MessageCircle,qr: true,  qrLabel: "play table games" },
+  { id: "bingo",     label: "Bingo",       icon: Grid3x3,      qr: true,  qrLabel: "play birthday bingo" },
+  { id: "raffle",    label: "Raffle",      icon: Ticket,       qr: true,  qrLabel: "enter the raffle" },
   { id: "give",      label: "Give",        icon: Heart,        qr: false },
   { id: "host",      label: "Host",        icon: ShieldCheck,  qr: false },
 
@@ -133,6 +137,7 @@ export default function Hub() {
     home:      <Home liveEntries={liveEntries} />,
     guestbook: <App />,
     cards:     <Cards />,
+    bingo:     <Bingo />,
     raffle:    <Raffle />,
     wall:      <Wall />,
     give:      <Give />,
