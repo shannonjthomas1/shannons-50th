@@ -146,7 +146,7 @@ export default function SeatingManager() {
       <input placeholder="Search guests..." value={search} onChange={e => setSearch(e.target.value)}
         className="w-full px-3 py-2 rounded mb-3 text-sm outline-none" style={{ color: COLORS.deepPurple, border: `1px solid ${COLORS.mauveBlush}` }} />
 
-      <div style={{ maxHeight: 400, overflowY: "auto" }}>
+      <div style={{ maxHeight: "min(400px, 55vh)", overflowY: "auto" }}>
         {loading ? (
           <p className="text-center text-sm py-4" style={{ color: COLORS.mauveBlush }}>Loading...</p>
         ) : filtered.length === 0 ? (

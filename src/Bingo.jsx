@@ -96,15 +96,15 @@ export default function Bingo() {
   return (
     <div style={{
       minHeight:"100vh", display:"flex", flexDirection:"column", alignItems:"center",
-      padding:"24px 16px 48px",
+      padding:"clamp(16px,4vw,24px) clamp(12px,4vw,16px) 48px",
       background:`linear-gradient(160deg, ${COLORS.deepPurple} 0%, #5C1F5C 40%, #7A2D6E 70%, ${COLORS.deepPurple} 100%)`,
       fontFamily:"'Poppins',sans-serif",
     }}>
       <Crown size={24} style={{ color:COLORS.champagneGold, marginBottom:8 }} strokeWidth={1.5}/>
-      <h1 style={{ fontFamily:"'Playfair Display',serif", fontSize:28, fontWeight:700, color:COLORS.cream, margin:"0 0 2px", textAlign:"center" }}>
+      <h1 style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(22px,5vw,28px)", fontWeight:700, color:COLORS.cream, margin:"0 0 2px", textAlign:"center" }}>
         Birthday Bingo
       </h1>
-      <p style={{ fontSize:11, color:COLORS.mauveBlush, margin:"0 0 16px", textAlign:"center" }}>
+      <p style={{ fontSize:"clamp(10px,2.5vw,11px)", color:COLORS.mauveBlush, margin:"0 0 16px", textAlign:"center" }}>
         Your card ID: <strong style={{ color:COLORS.champagneGold }}>{card.id}</strong>
       </p>
 
@@ -112,14 +112,14 @@ export default function Bingo() {
       {lastCalled && (
         <div style={{ background:"rgba(212,168,75,0.15)", border:`1px solid ${COLORS.champagneGold}`, borderRadius:10, padding:"8px 24px", marginBottom:14, textAlign:"center" }}>
           <p style={{ fontSize:10, color:COLORS.mauveBlush, margin:"0 0 2px", textTransform:"uppercase", letterSpacing:"0.15em" }}>Last called</p>
-          <p style={{ fontFamily:"'Playfair Display',serif", fontSize:32, fontWeight:700, color:COLORS.champagneGold, margin:0 }}>
+          <p style={{ fontFamily:"'Playfair Display',serif", fontSize:"clamp(24px,6vw,32px)", fontWeight:700, color:COLORS.champagneGold, margin:0 }}>
             {getColLetter(lastCalled)}{lastCalled}
           </p>
         </div>
       )}
 
       {won && (
-        <div style={{ background:COLORS.champagneGold, borderRadius:12, padding:"12px 20px", textAlign:"center", marginBottom:14, width:"100%", maxWidth:380 }}>
+        <div style={{ background:COLORS.champagneGold, borderRadius:12, padding:"12px 20px", textAlign:"center", marginBottom:14, width:"100%", maxWidth:"min(380px,100%)" }}>
           <p style={{ fontFamily:"'Playfair Display',serif", fontSize:20, color:COLORS.deepPurple, margin:"0 0 2px", fontWeight:700 }}>
             🎉 BINGO! You won!
           </p>
@@ -138,22 +138,22 @@ export default function Bingo() {
       ) : null}
 
       {/* Bingo card */}
-      <div style={{ width:"100%", maxWidth:380 }}>
+      <div style={{ width:"100%", maxWidth:"min(380px,100%)" }}>
         {/* Header row */}
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(5,1fr)", gap:4, marginBottom:4 }}>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(5,minmax(0,1fr))", gap:4, marginBottom:4 }}>
           {COLUMNS.map(col => (
             <div key={col.letter} style={{
               background:COLORS.champagneGold, borderRadius:8,
               display:"flex", alignItems:"center", justifyContent:"center",
               padding:"10px 0", fontFamily:"'Playfair Display',serif",
-              fontSize:22, fontWeight:700, color:COLORS.deepPurple,
+              fontSize:"clamp(18px,5vw,22px)", fontWeight:700, color:COLORS.deepPurple,
             }}>{col.letter}</div>
           ))}
         </div>
 
         {/* Grid */}
         {[0,1,2,3,4].map(r => (
-          <div key={r} style={{ display:"grid", gridTemplateColumns:"repeat(5,1fr)", gap:4, marginBottom:4 }}>
+          <div key={r} style={{ display:"grid", gridTemplateColumns:"repeat(5,minmax(0,1fr))", gap:4, marginBottom:4 }}>
             {[0,1,2,3,4].map(c => {
               const isFree = r===2 && c===2;
               const num = card.grid[c][r];
@@ -170,12 +170,12 @@ export default function Bingo() {
                 }}>
                   {isFree ? (
                     <>
-                      <span style={{ fontSize:11, color:COLORS.deepPurple, fontWeight:700 }}>FREE</span>
+                      <span style={{ fontSize:"clamp(10px,2.5vw,11px)", color:COLORS.deepPurple, fontWeight:700 }}>FREE</span>
                       <span style={{ fontSize:9, color:COLORS.deepPurple, fontWeight:700, marginTop:2, letterSpacing:"0.04em" }}>{card.id}</span>
                     </>
                   ) : (
                     <span style={{
-                      fontSize:18, fontWeight:600, fontFamily:"'Playfair Display',serif",
+                      fontSize:"clamp(14px,4vw,18px)", fontWeight:600, fontFamily:"'Playfair Display',serif",
                       color: isMarked ? "#fff" : isCalled ? COLORS.champagneGold : COLORS.mauveBlush,
                     }}>{num}</span>
                   )}
@@ -184,7 +184,7 @@ export default function Bingo() {
             })}
           </div>
         ))}
-        <p style={{ textAlign:"center", fontSize:11, color:COLORS.mauveBlush, marginTop:8 }}>
+        <p style={{ textAlign:"center", fontSize:"clamp(10px,2.5vw,11px)", color:COLORS.mauveBlush, marginTop:8 }}>
           Tap a number to mark it — only called numbers can be marked
         </p>
       </div>

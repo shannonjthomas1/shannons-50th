@@ -54,7 +54,7 @@ function HostGate({ onUnlock }) {
   return (
     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "48px 24px", textAlign: "center" }}>
       <Lock size={28} style={{ color: COLORS.champagneGold, marginBottom: 12 }} />
-      <h2 style={{ fontFamily: "'Playfair Display', serif", color: COLORS.cream, fontSize: 22, margin: "0 0 8px" }}>Host controls</h2>
+      <h2 style={{ fontFamily: "'Playfair Display', serif", color: COLORS.cream, fontSize: "clamp(14px,4vw,22px)", margin: "0 0 8px" }}>Host controls</h2>
       <p style={{ color: COLORS.mauveBlush, fontSize: 13, marginBottom: 20, maxWidth: 280 }}>
         Enter the host passcode to access the raffle draw and guestbook admin.
       </p>
@@ -148,7 +148,7 @@ export default function Hub() {
 
   return (
     <div style={{
-      minHeight: "100vh", width: "100%", display: "flex", flexDirection: "column",
+      minHeight: "100vh", width: "100%", overflowX: "hidden", display: "flex", flexDirection: "column",
       background: `linear-gradient(165deg, ${COLORS.deepPurple} 0%, ${COLORS.plumWine} 55%, ${COLORS.deepPurple} 100%)`,
       fontFamily: "'Poppins', sans-serif",
     }}>

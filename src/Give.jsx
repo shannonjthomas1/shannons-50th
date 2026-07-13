@@ -15,8 +15,8 @@ const DONATION_URL = "https://www.takingtheyard.com/offers/pGuJY88T/checkout";
 export default function Give() {
   return (
     <div style={{
-      minHeight: "100vh", width: "100%", display: "flex", flexDirection: "column",
-      alignItems: "center", padding: "32px 24px 48px",
+      minHeight: "100vh", width: "100%", overflowX: "hidden", display: "flex", flexDirection: "column",
+      alignItems: "center", padding: "clamp(20px,5vw,32px) clamp(16px,5vw,24px) 48px",
       background: `linear-gradient(165deg, ${COLORS.deepPurple} 0%, ${COLORS.plumWine} 55%, ${COLORS.deepPurple} 100%)`,
       fontFamily: "'Poppins', sans-serif",
     }}>
@@ -28,7 +28,7 @@ export default function Give() {
         Willie &amp; Beverly Metts Memorial Scholarship
       </p>
 
-      <div style={{ width: "100%", maxWidth: 420, background: COLORS.cream, borderRadius: 16, padding: 28, boxShadow: "0 20px 60px -10px rgba(0,0,0,0.5)" }}>
+      <div style={{ width: "100%", maxWidth: "min(420px, 100%)", background: COLORS.cream, borderRadius: 16, padding: 28, boxShadow: "0 20px 60px -10px rgba(0,0,0,0.5)" }}>
         <div style={{ display: "flex", justifyContent: "center", marginBottom: 18 }}>
           <div style={{ width: 64, height: 64, borderRadius: "50%", background: `${COLORS.roseGold}18`, border: `2px solid ${COLORS.roseGold}`, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <GraduationCap size={28} style={{ color: COLORS.roseGold }} />
@@ -67,7 +67,7 @@ export default function Give() {
           display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
           width: "100%", padding: "14px 0", borderRadius: 999,
           background: COLORS.deepPurple, color: COLORS.cream,
-          textDecoration: "none", fontSize: 15, fontWeight: 600,
+          textDecoration: "none", fontSize: "clamp(12px,3vw,15px)", fontWeight: 600,
           boxShadow: "0 4px 16px rgba(75,29,82,0.3)",
         }}>
           <Heart size={18} /> Give Now <ExternalLink size={13} style={{ opacity: 0.7 }} />

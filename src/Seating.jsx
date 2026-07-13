@@ -109,7 +109,7 @@ export default function Seating() {
   return (
     <div style={{
       minHeight: "100vh", display: "flex", flexDirection: "column", alignItems: "center",
-      padding: "28px 16px 48px",
+      padding: "clamp(16px,4vw,28px) clamp(12px,4vw,16px) 48px",
       background: `linear-gradient(160deg, ${COLORS.deepPurple} 0%, #5C1F5C 40%, #7A2D6E 70%, ${COLORS.deepPurple} 100%)`,
       fontFamily: "'Poppins', sans-serif",
     }}>
@@ -122,7 +122,7 @@ export default function Seating() {
       </p>
 
       {/* Search */}
-      <div style={{ width: "100%", maxWidth: 420, display: "flex", gap: 8, marginBottom: 24 }}>
+      <div style={{ width: "100%", maxWidth: "min(420px, 100%)", display: "flex", gap: 8, marginBottom: 24 }}>
         <input
           type="text"
           placeholder="Enter your name..."
@@ -132,7 +132,7 @@ export default function Seating() {
           style={{
             flex: 1, padding: "12px 16px", borderRadius: 10, outline: "none",
             border: `1.5px solid ${COLORS.mauveBlush}`, color: COLORS.deepPurple,
-            fontSize: 15, fontFamily: "'Poppins', sans-serif",
+            fontSize: "clamp(12px,3vw,15px)", fontFamily: "'Poppins', sans-serif",
           }}
         />
         <button onClick={handleSearch} style={{
@@ -146,7 +146,7 @@ export default function Seating() {
       </div>
 
       {/* Results */}
-      <div style={{ width: "100%", maxWidth: 420 }}>
+      <div style={{ width: "100%", maxWidth: "min(420px, 100%)" }}>
         {searched && results.length === 0 && (
           <div style={{ textAlign: "center", padding: "32px 16px" }}>
             <p style={{ color: COLORS.mauveBlush, fontSize: 14, margin: "0 0 6px" }}>
@@ -168,7 +168,7 @@ export default function Seating() {
                 <p style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.15em", color: COLORS.plumWine, fontWeight: 600, margin: "0 0 4px" }}>
                   Your table
                 </p>
-                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: 64, fontWeight: 700, color: COLORS.deepPurple, margin: 0, lineHeight: 1 }}>
+                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(56px,13vw,64px)", fontWeight: 700, color: COLORS.deepPurple, margin: 0, lineHeight: 1 }}>
                   {entry.table}
                 </p>
               </div>

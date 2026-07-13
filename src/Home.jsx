@@ -25,7 +25,7 @@ function TickerBar({ entries }) {
           <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "0 32px" }}>
             <span style={{ color: "#D4A84B", fontSize: 13, fontWeight: 600 }}>— {e.name || "Guest"}</span>
             <span style={{ color: "#FDF0ED", fontSize: 13 }}>{e.text}</span>
-            <span style={{ color: "#C17A8A", fontSize: 18, marginLeft: 8 }}>✦</span>
+            <span style={{ color: "#C17A8A", fontSize: "clamp(12px,4vw,18px)", marginLeft: 8 }}>✦</span>
           </span>
         ))}
       </div>

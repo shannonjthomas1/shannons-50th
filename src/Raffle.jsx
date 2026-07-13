@@ -130,7 +130,7 @@ export default function Raffle() {
               {alreadyEntered ? "You're already entered. Your number is:" : "Your number is:"}
             </p>
             <p
-              className="text-6xl font-bold mb-2"
+              className="text-5xl font-bold mb-2"
               style={{ color: COLORS.deepPurple, fontFamily: "'Playfair Display', serif" }}
             >
               {myNumber}
