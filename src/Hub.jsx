@@ -186,7 +186,7 @@ export default function Hub() {
           <QRCode url={QR_URLS[activeTab]} label={currentTab.label.toLowerCase()} />
           <div>
             <p style={{ color: COLORS.champagneGold, fontSize: 13, fontWeight: 500, margin: "0 0 3px" }}>
-              {activeTab === "guestbook" ? "Scan to leave a wish or memory" : activeTab === "cards" ? "Scan to play table games" : "Scan to enter the raffle"}
+              {`Scan to ${currentTab.qrLabel}`}
             </p>
             <p style={{ color: COLORS.mauveBlush, fontSize: 11, margin: 0 }}>
               Or hand your phone to a friend — anyone can scan
