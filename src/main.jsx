@@ -6,6 +6,7 @@ import Wall from "./Wall.jsx";
 import Cards from "./Cards.jsx";
 import Raffle from "./Raffle.jsx";
 import RaffleHost from "./RaffleHost.jsx";
+import Bingo from "./Bingo.jsx";
 import "./index.css";
 
 const path = window.location.pathname;
@@ -15,6 +16,7 @@ const ROUTES = {
   "/cards": Cards,
   "/raffle": Raffle,
   "/raffle/host": RaffleHost,
+  "/bingo": Bingo,
 };
 const RootComponent = ROUTES[path] || Hub;
 
