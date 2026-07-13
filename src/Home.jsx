@@ -53,6 +53,23 @@ export default function Home({ liveEntries = [] }) {
         background: "linear-gradient(to bottom, rgba(0,0,0,0) 55%, rgba(20,5,28,0.55) 80%, rgba(20,5,28,0.78) 100%)",
       }} />
 
+      {/* WiFi banner */}
+      <div style={{
+        background: "rgba(0,0,0,0.5)", borderTop: "1px solid rgba(229,193,88,0.3)",
+        padding: "10px 20px", display: "flex", alignItems: "center", justifyContent: "center",
+        gap: 10, flexWrap: "wrap", flexShrink: 0,
+      }}>
+        <span style={{ fontSize: 12, color: COLORS.champagneGold, fontWeight: 600, whiteSpace: "nowrap" }}>
+          📶 WiFi:
+        </span>
+        <span style={{ fontSize: 12, color: COLORS.cream, fontWeight: 600, whiteSpace: "nowrap" }}>
+          GTvisitor
+        </span>
+        <span style={{ fontSize: 11, color: COLORS.mauveBlush }}>
+          — Select free tier, open browser &amp; follow the prompts to connect
+        </span>
+      </div>
+
       <TickerBar entries={liveEntries} />
     </div>
   );
