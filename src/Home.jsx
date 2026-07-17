@@ -37,14 +37,31 @@ export default function Home({ liveEntries = [] }) {
   return (
     <div style={{ flex: 1, display: "flex", flexDirection: "column", position: "relative", overflow: "hidden", minHeight: 460 }}>
 
+      <style>{`
+        .banner-img {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          display: block;
+          z-index: 0;
+          object-fit: cover;
+          object-position: center top;
+        }
+        @media (max-width: 640px) {
+          .banner-img {
+            object-fit: contain;
+            object-position: center center;
+            background: #3D0C4E;
+          }
+        }
+      `}</style>
+
       {/* Full banner background */}
       <img
         src="/banner.jpg"
         alt="Favored, Fabulous & Fifty"
-        style={{
-          position: "absolute", inset: 0, width: "100%", height: "100%",
-          objectFit: "cover", objectPosition: "center top", display: "block", zIndex: 0,
-        }}
+        className="banner-img"
       />
 
       {/* Subtle gradient at bottom only */}
