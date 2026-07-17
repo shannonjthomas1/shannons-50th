@@ -2,12 +2,8 @@ import React, { useState } from "react";
 import { Crown, Search, MapPin, Users } from "lucide-react";
 
 const COLORS = {
-  deepPurple: "#3D0C4E",
-  plumWine: "#6B2D6B",
-  mauveBlush: "#C4869A",
-  roseGold: "#C17A8A",
-  champagneGold: "#D4A84B",
-  cream: "#FDF0ED",
+  deepPurple: "#3D0C4E", plumWine: "#6B2D6B", mauveBlush: "#C4869A",
+  roseGold: "#C17A8A", champagneGold: "#D4A84B", cream: "#FDF0ED",
 };
 
 const SEATING_DATA = [
@@ -38,7 +34,7 @@ const SEATING_DATA = [
   { name: 'Verna Burney', party: 'Betty Brown & Verna Burney', table: 4, tableName: 'Church' },
   { name: 'Sherica Thomas', party: 'Sherica Thomas & Jimmy Thomas', table: 4, tableName: 'Church' },
   { name: 'Jimmy Thomas', party: 'Sherica Thomas & Jimmy Thomas', table: 4, tableName: 'Church' },
-  { name: 'Shereka Wilson', party: 'Shereka Wilson', table: 4, tableName: 'Church' },
+  { name: 'Tiffany Gardner', party: 'Tiffany Gardner', table: 4, tableName: 'Church' },
   { name: 'Colrie Coleman', party: 'Colrie Coleman & Reba Ricks', table: 4, tableName: 'Church' },
   { name: 'Reba Ricks', party: 'Colrie Coleman & Reba Ricks', table: 4, tableName: 'Church' },
   { name: 'Juerita Barriere', party: 'Juerita Barriere', table: 4, tableName: 'Church' },
@@ -52,7 +48,7 @@ const SEATING_DATA = [
   { name: 'Roger Simms', party: 'Roger Simms', table: 5, tableName: 'Professional' },
   { name: 'India Jackson', party: 'India Jackson & Larry Cornelius', table: 6, tableName: 'Soror' },
   { name: 'Larry Cornelius', party: 'India Jackson & Larry Cornelius', table: 6, tableName: 'Soror' },
-  { name: 'Tina Woodard', party: 'Tina Woodard', table: 6, tableName: 'Soror' },
+  { name: 'Shereka Wilson', party: 'Shereka Wilson', table: 6, tableName: 'Soror' },
   { name: 'Derek Hardy', party: 'Derek Hardy & Krystl Hardy', table: 6, tableName: 'Soror' },
   { name: 'Krystl Hardy', party: 'Derek Hardy & Krystl Hardy', table: 6, tableName: 'Soror' },
   { name: 'Janise Campbell Baity', party: 'Janise Campbell Baity & Godfrey Baity', table: 6, tableName: 'Soror' },
@@ -76,7 +72,8 @@ const SEATING_DATA = [
   { name: 'Sheila McGhee', party: 'Sheila McGhee', table: 8, tableName: 'Mixed Overflow (Church/Family/Friends)' },
   { name: 'Uwanna Smith', party: 'Uwanna Smith & Calvin Blackburn', table: 9, tableName: 'Professional Overflow' },
   { name: 'Calvin Blackburn', party: 'Uwanna Smith & Calvin Blackburn', table: 9, tableName: 'Professional Overflow' },
-  { name: 'Tiffany Gardner', party: 'Tiffany Gardner', table: 9, tableName: 'Professional Overflow' },
+  { name: 'Ausha', party: 'Ausha & Jeffery Jackson', table: 9, tableName: 'Professional Overflow' },
+  { name: 'Jeffery Jackson', party: 'Ausha & Jeffery Jackson', table: 9, tableName: 'Professional Overflow' },
   { name: 'Chris Tidrick', party: 'Chris Tidrick', table: 9, tableName: 'Professional Overflow' },
   { name: 'Mitzi Williams', party: 'Mitzi Williams & Dakiesha Lanier', table: 9, tableName: 'Professional Overflow' },
   { name: 'Dakiesha Lanier', party: 'Mitzi Williams & Dakiesha Lanier', table: 9, tableName: 'Professional Overflow' },
@@ -91,16 +88,13 @@ export default function Seating() {
     const q = query.trim().toLowerCase();
     if (!q) return;
     const found = SEATING_DATA.filter(e =>
-      e.name.toLowerCase().includes(q) ||
-      e.party.toLowerCase().includes(q)
+      e.name.toLowerCase().includes(q) || e.party.toLowerCase().includes(q)
     );
-    // Deduplicate by table+party combo
     const seen = new Set();
     const deduped = found.filter(e => {
       const key = `${e.table}-${e.party}`;
       if (seen.has(key)) return false;
-      seen.add(key);
-      return true;
+      seen.add(key); return true;
     });
     setResults(deduped);
     setSearched(true);
@@ -121,70 +115,43 @@ export default function Seating() {
         Type your first or last name to find your table
       </p>
 
-      {/* Search */}
       <div style={{ width: "100%", maxWidth: 420, display: "flex", gap: 8, marginBottom: 24 }}>
         <input
-          type="text"
-          placeholder="Enter your name..."
-          value={query}
-          onChange={e => setQuery(e.target.value)}
+          type="text" placeholder="Enter your name..."
+          value={query} onChange={e => setQuery(e.target.value)}
           onKeyDown={e => e.key === "Enter" && handleSearch()}
-          style={{
-            flex: 1, padding: "12px 16px", borderRadius: 10, outline: "none",
-            border: `1.5px solid ${COLORS.mauveBlush}`, color: COLORS.deepPurple,
-            fontSize: 15, fontFamily: "'Poppins', sans-serif",
-          }}
+          style={{ flex: 1, padding: "12px 16px", borderRadius: 10, outline: "none", border: `1.5px solid ${COLORS.mauveBlush}`, color: COLORS.deepPurple, fontSize: 15, fontFamily: "'Poppins', sans-serif" }}
         />
         <button onClick={handleSearch} style={{
           padding: "12px 18px", borderRadius: 10, border: "none",
           background: COLORS.champagneGold, color: COLORS.deepPurple,
-          cursor: "pointer", display: "flex", alignItems: "center", gap: 6,
-          fontSize: 14, fontWeight: 600,
+          cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontSize: 14, fontWeight: 600,
         }}>
           <Search size={16} /> Find
         </button>
       </div>
 
-      {/* Results */}
       <div style={{ width: "100%", maxWidth: 420 }}>
         {searched && results.length === 0 && (
           <div style={{ textAlign: "center", padding: "32px 16px" }}>
-            <p style={{ color: COLORS.mauveBlush, fontSize: 14, margin: "0 0 6px" }}>
-              No match found for "{query}"
-            </p>
-            <p style={{ color: COLORS.roseGold, fontSize: 12, margin: 0 }}>
-              Try your last name, or ask a host for help
-            </p>
+            <p style={{ color: COLORS.mauveBlush, fontSize: 14, margin: "0 0 6px" }}>No match found for "{query}"</p>
+            <p style={{ color: COLORS.roseGold, fontSize: 12, margin: 0 }}>Try your last name, or ask a host for help</p>
           </div>
         )}
-
         {results.map((entry, i) => (
-          <div key={i} style={{
-            background: COLORS.cream, borderRadius: 14, padding: "20px 20px 18px",
-            marginBottom: 12, boxShadow: "0 12px 32px -8px rgba(0,0,0,0.4)",
-          }}>
-            <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", marginBottom: 12 }}>
-              <div>
-                <p style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.15em", color: COLORS.plumWine, fontWeight: 600, margin: "0 0 4px" }}>
-                  Your table
-                </p>
-                <p style={{ fontFamily: "'Playfair Display', serif", fontSize: 64, fontWeight: 700, color: COLORS.deepPurple, margin: 0, lineHeight: 1 }}>
-                  {entry.table}
-                </p>
-              </div>
+          <div key={i} style={{ background: COLORS.cream, borderRadius: 14, padding: "20px 20px 18px", marginBottom: 12, boxShadow: "0 12px 32px -8px rgba(0,0,0,0.4)" }}>
+            <div style={{ marginBottom: 12 }}>
+              <p style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.15em", color: COLORS.plumWine, fontWeight: 600, margin: "0 0 4px" }}>Your table</p>
+              <p style={{ fontFamily: "'Playfair Display', serif", fontSize: "clamp(48px,12vw,64px)", fontWeight: 700, color: COLORS.deepPurple, margin: 0, lineHeight: 1 }}>{entry.table}</p>
             </div>
-
             <div style={{ height: 1, background: `${COLORS.mauveBlush}33`, marginBottom: 12 }} />
-
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 6 }}>
               <Users size={14} style={{ color: COLORS.mauveBlush, flexShrink: 0 }} />
               <p style={{ fontSize: 13, color: COLORS.deepPurple, margin: 0, fontWeight: 500 }}>{entry.party}</p>
             </div>
             <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
               <MapPin size={14} style={{ color: COLORS.champagneGold, flexShrink: 0 }} />
-              <p style={{ fontSize: 12, color: COLORS.plumWine, margin: 0 }}>
-                Look for the Table {entry.table} sign in the venue
-              </p>
+              <p style={{ fontSize: 12, color: COLORS.plumWine, margin: 0 }}>Look for the Table {entry.table} sign in the venue</p>
             </div>
           </div>
         ))}
