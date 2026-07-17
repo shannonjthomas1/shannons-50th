@@ -14,18 +14,18 @@ function TickerBar({ entries }) {
   const items = entries.length ? entries : SAMPLE_ENTRIES;
   const doubled = [...items, ...items];
   return (
-    <div style={{ background: "rgba(0,0,0,0.6)", borderTop: "1px solid rgba(229,193,88,0.4)", padding: "11px 0", overflow: "hidden", backdropFilter: "blur(4px)" }}>
+    <div style={{ background: "rgba(0,0,0,0.6)", borderTop: "1px solid rgba(229,193,88,0.4)", padding: "11px 0", overflow: "hidden", backdropFilter: "blur(4px)", whiteSpace: "nowrap" }}>
       <style>{`
         @keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-        .ticker-tt{display:flex;animation:ticker 50s linear infinite;white-space:nowrap;width:max-content}
+        .ticker-tt{display:inline-flex;animation:ticker 60s linear infinite;white-space:nowrap;will-change:transform;}
         .ticker-tt:hover{animation-play-state:paused}
       `}</style>
       <div className="ticker-tt">
         {doubled.map((e, i) => (
-          <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "0 32px" }}>
-            <span style={{ color: "#D4A84B", fontSize: 13, fontWeight: 600 }}>— {e.name || "Guest"}</span>
-            <span style={{ color: "#FDF0ED", fontSize: 13 }}>{e.text}</span>
-            <span style={{ color: "#C17A8A", fontSize: 18, marginLeft: 8 }}>✦</span>
+          <span key={i} style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "0 40px", flexShrink: 0 }}>
+            <span style={{ color: "#D4A84B", fontSize: 13, fontWeight: 600, whiteSpace: "nowrap" }}>— {e.name || "Guest"}:</span>
+            <span style={{ color: "#FDF0ED", fontSize: 13, whiteSpace: "nowrap" }}>{e.text}</span>
+            <span style={{ color: "#C17A8A", fontSize: 16, marginLeft: 8 }}>✦</span>
           </span>
         ))}
       </div>
