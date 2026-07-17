@@ -40,19 +40,23 @@ export default function Home({ liveEntries = [] }) {
       <style>{`
         .banner-img {
           position: absolute;
-          inset: 0;
+          top: 0;
+          left: 0;
           width: 100%;
           height: 100%;
           display: block;
           z-index: 0;
           object-fit: cover;
-          object-position: center top;
+          object-position: top center;
         }
         @media (max-width: 640px) {
           .banner-img {
             object-fit: contain;
-            object-position: center center;
-            background: #3D0C4E;
+            object-position: top center;
+            background-color: #3D0C4E;
+          }
+          .home-wrap {
+            min-height: calc(100vw * 0.563) !important;
           }
         }
       `}</style>
@@ -70,7 +74,12 @@ export default function Home({ liveEntries = [] }) {
         background: "linear-gradient(to bottom, rgba(0,0,0,0) 55%, rgba(20,5,28,0.55) 80%, rgba(20,5,28,0.78) 100%)",
       }} />
 
-      <TickerBar entries={liveEntries} />
+      {/* Spacer to push ticker to bottom */}
+      <div style={{ flex: 1, zIndex: 2 }} />
+
+      <div style={{ position: "relative", zIndex: 2 }}>
+        <TickerBar entries={liveEntries} />
+      </div>
     </div>
   );
 }
