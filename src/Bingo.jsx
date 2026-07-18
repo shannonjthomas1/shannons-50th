@@ -90,7 +90,14 @@ export default function Bingo() {
     const next = marked.map(row => [...row]);
     next[r][c] = !next[r][c];
     setMarked(next);
-    if (checkWin(next)) setWon(true);
+    if (checkWin(next)) {
+      setWon(true);
+      // Save winner to Supabase so host can see it
+      await supabase.from("bingo_winners").insert({
+        card_id: card.id,
+        called_count: calledNumbers.length + 1,
+      });
+    }
   };
 
   return (
