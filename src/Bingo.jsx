@@ -83,7 +83,7 @@ export default function Bingo() {
     return () => clearInterval(interval);
   }, []);
 
-  const toggle = (r, c) => {
+  const toggle = async (r, c) => {
     if (r===2 && c===2) return;
     const num = card.grid[c][r];
     if (!calledNumbers.includes(num)) return;
@@ -95,7 +95,7 @@ export default function Bingo() {
       // Save winner to Supabase so host can see it
       await supabase.from("bingo_winners").insert({
         card_id: card.id,
-        called_count: calledNumbers.length + 1,
+        called_count: calledNumbers.length,
       });
     }
   };
