@@ -74,10 +74,26 @@ export default function Home({ liveEntries = [] }) {
         background: "linear-gradient(to bottom, rgba(0,0,0,0) 55%, rgba(20,5,28,0.55) 80%, rgba(20,5,28,0.78) 100%)",
       }} />
 
-      {/* Spacer to push ticker to bottom */}
+      {/* Spacer to push content to bottom */}
       <div style={{ flex: 1, zIndex: 2 }} />
 
       <div style={{ position: "relative", zIndex: 2 }}>
+        {/* WiFi info bar */}
+        <div style={{
+          background: "rgba(61,12,78,0.85)",
+          borderTop: "1px solid rgba(212,168,75,0.4)",
+          padding: "8px 16px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 8,
+          flexWrap: "wrap",
+          backdropFilter: "blur(4px)",
+        }}>
+          <span style={{ fontSize: 12, color: "#D4A84B", fontWeight: 700 }}>📶 WiFi:</span>
+          <span style={{ fontSize: 12, color: "#FDF0ED", fontWeight: 700 }}>GTvisitor</span>
+          <span style={{ fontSize: 11, color: "#C4869A" }}>— Select free, open browser &amp; follow prompts</span>
+        </div>
         <TickerBar entries={liveEntries} />
       </div>
     </div>
